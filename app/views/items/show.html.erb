@@ -1,2 +1,7 @@
-<h1>Items#show</h1>
-<p>Find me in app/views/items/show.html.erb</p>
+<%= render(partial:'layouts/navbar') %>
+
+<%= @item.name %>
+<%= @item.description %>
+<%= @item.status %>
+<%= @item.category %>
+<%= @item.number_of_likes %>

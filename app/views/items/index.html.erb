@@ -1,2 +1,26 @@
-<h1>Items#index</h1>
-<p>Find me in app/views/items/index.html.erb</p>
+<%= render(partial:'layouts/navbar') %>
+<% if @items.any? %>
+  <ul>
+    <% @items.each do |item| %>
+      <li>
+        <%= link_to item.name, item_path(item) %>
+        <br />
+        <%= item.description %>
+        <br />
+        <%= item.number_of_likes %>
+        <br />
+        <%= form_for item do |f| %>
+          <%= f.check_box :status, id: item.id %>
+          <%= f.label " ", for: item.id %>
+          <%= f.submit %>
+        <% end %>
+        <br />
+        <%=  link_to 'Delete Item', item_path(item), method: :delete, data:{confirm: 'Are you really the whimp that I think you are?'} %>
+        <hr />
+      </li>
+    <% end %>
+  </ul>
+  <% else %>
+    <h3>You have no items to choose from, go ahead and ADD one</h3> 
+    <%= link_to 'Create your first BucketItem', new_item_path %> 
+<% end %>

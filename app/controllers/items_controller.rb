@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :find_item, only: [:show, :edit, :update, :destroy]
+  before_action :find_list, only: [:update]
   def index
     @items = Item.all 
   end
@@ -27,7 +28,7 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(items_params)
-      redirect_to item_path(@item)
+      redirect_to list_path(@list)
     else
       render :edit
     end
@@ -50,6 +51,10 @@ class ItemsController < ApplicationController
 
   def find_item
     @item = Item.find(params[:id])
+  end
+
+  def find_list
+    @list = List.find(@item)
   end
 end
 
