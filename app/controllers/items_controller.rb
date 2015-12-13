@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
   before_action :find_item, only: [:show, :edit, :update, :destroy]
+  before_action :find_list
+
   def index
     @items = Item.all 
   end
@@ -10,12 +12,15 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
+    binding.pry
   end
 
   def create
     @item = Item.new(items_params)
     if @item.save
-      redirect_to item_path(@item)
+      @list.items << @item
+      binding.pry
+      redirect_to list_item_path(@list, @item)
     else
       render :new
     end
@@ -50,6 +55,10 @@ class ItemsController < ApplicationController
 
   def find_item
     @item = Item.find(params[:id])
+  end
+
+  def find_list
+    @list = current_user.lists.find(params[:list_id])
   end
 end
 

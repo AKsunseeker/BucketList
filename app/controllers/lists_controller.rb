@@ -16,6 +16,7 @@ class ListsController < ApplicationController
     @list = List.new(list_params)
     @list.user_id = current_user.id
     if @list.save
+      # ListItem.lists <<(list_id: @list)
       redirect_to list_path(@list)
     else
       render :new
@@ -46,7 +47,7 @@ class ListsController < ApplicationController
   private
 
   def list_params
-    params.require(:list).permit(:name, :description, :number_of_likes)
+    params.require(:list).permit(:name, :description, :number_of_likes, :list_items)
   end
 
   def find_list
