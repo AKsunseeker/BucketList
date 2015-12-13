@@ -12,14 +12,12 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    binding.pry
   end
 
   def create
     @item = Item.new(items_params)
     if @item.save
       @list.items << @item
-      binding.pry
       redirect_to list_item_path(@list, @item)
     else
       render :new
