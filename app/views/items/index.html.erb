@@ -3,7 +3,7 @@
   <div class="center-align">
     <h2>Items</h2>
     <% @items.each do |item| %>
-      <%= link_to item.name, list_item_path(@lit, item) %>
+      <%= link_to item.name, list_item_path(@list, item) %>
     <% end %>
   </div
 </div>

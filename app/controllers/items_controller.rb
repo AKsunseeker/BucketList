@@ -37,8 +37,9 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if @item.destroy
-      redirect_to list_items_path(@list, @item)
+    @list_item = ListItem.where(list_id: @list, item_id: @item)
+    if ListItem.destroy(@list_item)
+      redirect_to list_path(@list)
     else
       render :show
     end
