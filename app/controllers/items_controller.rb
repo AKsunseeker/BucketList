@@ -30,7 +30,7 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(items_params)
-      redirect_to item_path(@item)
+      redirect_to list_item_path(@list, @item)
     else
       render :edit
     end
@@ -38,7 +38,7 @@ class ItemsController < ApplicationController
 
   def destroy
     if @item.destroy
-      redirect_to items_path
+      redirect_to list_items_path(@list, @item)
     else
       render :show
     end

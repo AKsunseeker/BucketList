@@ -1,4 +1,26 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
-
 <%= render(partial: 'layouts/navbar') %>
+<div class="container">
+  <div class="center-align">
+    <h1>Welcome to BucketList</h1>
+    <h3>Where you can set and celebrate your life goals!</h3>
+  </div>
+  <div class="row">
+    <% if ListItem.any? %>
+      <% ListItem.all.each do |list_item| %>
+        <div class="col s6">
+          <div class="card blue lighten-2">
+            <div class="card-content white-text">
+              <span class="card-title"><%= list_item.item.name %></span>
+              <p><%= list_item.item.description %>
+                  </br>
+                By: <%= list_item.list.user.email %>
+              </p>
+            </div>
+          </div>
+        </div>
+    <% end %>
+  </div>
+  <% else %>
+    <h4 class="center align">Nobody in the world has any goals. Create some!</h4>
+  <% end %>
+</div>

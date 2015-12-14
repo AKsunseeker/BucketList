@@ -1,3 +1,8 @@
+<% if @list.errors.any? %>
+  <h5>Errors:</h5>
+  <p><%= @list.errors.full_messages.join(',') %></p>
+<% end %>
+
 <%= form_for @list do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
@@ -5,5 +10,5 @@
   <%= f.label :description %>
   <%= f.text_area :description %>
   <br />
-  <%= f.submit %>
+  <%= f.submit class: 'btn' %>
 <% end %>
