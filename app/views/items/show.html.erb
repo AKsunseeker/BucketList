@@ -11,10 +11,16 @@
       Category:
       <%= @item.category %>
       <br />
-      Status:
-      <div type="checkbox">
-        <%= @item.status%>
-      </div>
+      <form action="#">
+        <% if @item.status == true %>
+          <input type="checkbox", id ="status", disabled="disabled", checked="checked">
+          </input>
+        <% else %>
+          <input type="checkbox", id="status", disabled="disabled">
+          </input>
+        <% end %>
+        <label for="status">Complete?</label>
+      </form>
     </p>
   </div>
       <br />

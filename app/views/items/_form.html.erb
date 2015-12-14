@@ -15,8 +15,8 @@
     <%= f.label :category %>
   </div>
   <br />
-  <%= f.check_box :status %>
-  <%= f.label :status %>
+  <%= f.check_box :status, :id => 'completed' %>
+  <%= f.label :status, :for => 'completed' %>
   <br />
   <%= f.submit class: 'btn' %>
 <% end %>
